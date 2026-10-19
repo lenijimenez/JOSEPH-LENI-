@@ -1,0 +1,18 @@
+{
+  "[project]/node_modules/react-globe.gl/dist/react-globe.gl.mjs [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/node_modules/react-globe.gl/dist/react-globe.gl.mjs [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/node_modules_three_build_three_core_18d0oq6so9l-t.js",
+      "static/chunks/node_modules_three_build_three_module_03rsyo66totzs.js",
+      "static/chunks/node_modules_three_build_three_webgpu_03ifktd4hfpji.js",
+      "static/chunks/node_modules_three_build_three_tsl_16d8u0-gf5gqv.js",
+      "static/chunks/node_modules_three_examples_jsm_10fl7gn09tnte._.js",
+      "static/chunks/node_modules_d3-geo_src_0qrnk42q-o8pp._.js",
+      "static/chunks/node_modules_robust-predicates_19g1dctbwsxqa._.js",
+      "static/chunks/node_modules_h3-js_dist_browser_h3-js_es_10lpoxfqvj3nh.js",
+      "static/chunks/node_modules_three-globe_dist_three-globe_mjs_218vr5zj8a66q._.js",
+      "static/chunks/node_modules_polished_dist_polished_esm_0y8eg1zf983a1.js",
+      "static/chunks/node_modules_1e68k5qpivwbi._.js"
+    ]
+  }
+}
