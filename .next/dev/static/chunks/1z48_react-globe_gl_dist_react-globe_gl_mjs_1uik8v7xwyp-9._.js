@@ -1,0 +1,22 @@
+(globalThis["TURBOPACK"] || (globalThis["TURBOPACK"] = [])).push([typeof document === "object" ? document.currentScript : undefined,
+"[project]/node_modules/.pnpm/react-globe.gl@2.38.0_react@19.3.0/node_modules/react-globe.gl/dist/react-globe.gl.mjs [app-client] (ecmascript, next/dynamic entry, async loader)", ((__turbopack_context__) => {
+
+__turbopack_context__.v((parentImport) => {
+    return Promise.all([
+  "static/chunks/1dql_three_build_three_core_1b1iemq_9t0j7.js",
+  "static/chunks/1dql_three_build_three_module_04jj_d6itvbxm.js",
+  "static/chunks/1dql_three_build_three_webgpu_1m_v21n23ssv8.js",
+  "static/chunks/1dql_three_build_three_tsl_06l914rvzy9-f.js",
+  "static/chunks/1dql_three_examples_jsm_0bzudeupkukp0._.js",
+  "static/chunks/1wg8_d3-geo_src_1rgzslr-x9_15._.js",
+  "static/chunks/0y7q_robust-predicates_13on3vz_du0ut._.js",
+  "static/chunks/0nmv_h3-js_dist_browser_h3-js_es_0lqj48xm59scz.js",
+  "static/chunks/1omu_three-globe_dist_three-globe_mjs_07nq7umk3mc30._.js",
+  "static/chunks/1dgb_polished_dist_polished_esm_05enrl1ra310z.js",
+  "static/chunks/node_modules__pnpm_0ptuslr5755t5._.js"
+].map((chunk) => __turbopack_context__.l(chunk))).then(() => {
+        return parentImport("[project]/node_modules/.pnpm/react-globe.gl@2.38.0_react@19.3.0/node_modules/react-globe.gl/dist/react-globe.gl.mjs [app-client] (ecmascript, next/dynamic entry)");
+    });
+});
+}),
+]);
