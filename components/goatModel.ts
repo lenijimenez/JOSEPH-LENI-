@@ -331,17 +331,7 @@ export function createGoat3DModel(species: GoatSpecies): THREE.Group {
     });
   }
 
-  // 3. Floating Beacon marker above head
-  const beaconGeo = new THREE.OctahedronGeometry(0.14, 0);
-  const beaconMat = new THREE.MeshBasicMaterial({
-    color: 0x38bdf8,
-    wireframe: false,
-  });
-  const beaconMesh = new THREE.Mesh(beaconGeo, beaconMat);
-  beaconMesh.position.set(0, 2.5, 0.4);
-  root.add(beaconMesh);
-
-  // 4. Large Invisible Hit Sphere for effortless clicking & hover detection
+  // 3. Large Invisible Hit Sphere for effortless clicking & hover detection
   const hitGeo = new THREE.SphereGeometry(1.6, 8, 8);
   const hitMat = new THREE.MeshBasicMaterial({
     transparent: true,
@@ -360,7 +350,6 @@ export function createGoat3DModel(species: GoatSpecies): THREE.Group {
   root.userData = {
     species,
     id: species.id,
-    beaconMesh,
     discMat,
   };
 

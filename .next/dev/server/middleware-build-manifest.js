@@ -40,6 +40,21 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/_1anvha4rlo79g._.js",
       "static/chunks/turbopack-_0x16wams4bm78._.js",
       "static/chunks/_219uq1sj0q91c._.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_1f10r6837s0-d._.js",
+      "static/chunks/18de_next_dist_compiled_next-devtools_index_03hrbv52dwkso.js",
+      "static/chunks/18de_next_dist_compiled_react-dom_cjs_react-dom-client_development_1_eexf846ki32.js",
+      "static/chunks/18de_next_dist_compiled_react-dom_cjs_react-dom_development_1cvbtcwftxy41.js",
+      "static/chunks/18de_next_dist_compiled_react-dom_1t39oparxb43j._.js",
+      "static/chunks/18de_next_dist_compiled_react-server-dom-turbopack_02yce9f4ng778._.js",
+      "static/chunks/18de_next_dist_compiled_0jhqxl7_k01qi._.js",
+      "static/chunks/18de_next_dist_client_17qt_mwzcxm8f._.js",
+      "static/chunks/18de_next_dist_1r9xkh12k3ioz._.js",
+      "static/chunks/0zix_@swc_helpers_cjs_0hi-e474n4mns._.js",
+      "static/chunks/_1anvha4rlo79g._.js",
+      "static/chunks/turbopack-_0x16wams4bm78._.js",
+      "static/chunks/_18x7jxupx5rou._.js"
     ]
   },
   "pagesChunkGroupBootstrapParams": {},

@@ -37,13 +37,6 @@ html, body {
   background: #38bdf880;
 }
 
-.glass-panel {
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
-  background: #0b1326d1;
-  border: 1px solid #38bdf833;
-  box-shadow: 0 12px 40px #0009, 0 0 24px #38bdf814;
-}
-
 .glass-btn {
   background: #ffffff0f;
   border: 1px solid #ffffff1f;
@@ -60,64 +53,11 @@ html, body {
   transform: translateY(0);
 }
 
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 15px #38bdf84d;
-  }
-
-  50% {
-    box-shadow: 0 0 30px #38bdf8b3;
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(40px) scale(.96);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes floatGentle {
-  0%, 100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-4px);
-  }
-}
-
-.animate-pulse-glow {
-  animation: 2.5s ease-in-out infinite pulseGlow;
-}
-
-.animate-slide-right {
-  animation: .32s cubic-bezier(.16, 1, .3, 1) forwards slideInRight;
-}
-
-.animate-slide-up {
-  animation: .3s cubic-bezier(.16, 1, .3, 1) forwards slideUp;
-}
-
-.animate-float {
-  animation: 3s ease-in-out infinite floatGentle;
+.glass-panel {
+  -webkit-backdrop-filter: blur(16px);
+  background: #0b1326eb;
+  border: 1px solid #38bdf833;
+  box-shadow: 0 12px 40px #0009;
 }
 
 /*# sourceMappingURL=app_globals_0yg4wg8plh8sv.css.map*/

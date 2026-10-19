@@ -29,7 +29,7 @@ export default function GlobeComponent() {
   const [hoveredGoat, setHoveredGoat] = useState<GoatSpecies | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>("Toutes");
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [isRotating, setIsRotating] = useState<boolean>(true);
+  const [isRotating, setIsRotating] = useState<boolean>(false);
   const [earthTheme, setEarthTheme] = useState<"night" | "day">("night");
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
   const [isTourActive, setIsTourActive] = useState<boolean>(false);
@@ -96,9 +96,9 @@ export default function GlobeComponent() {
   const resetView = useCallback(() => {
     setSelectedGoat(null);
     setIsTourActive(false);
-    setIsRotating(true);
+    setIsRotating(false);
     if (globeEl.current) {
-      globeEl.current.pointOfView({ lat: 25, lng: 15, altitude: 2.2 }, 1500);
+      globeEl.current.pointOfView({ lat: 25, lng: 15, altitude: 2.2 }, 1000);
     }
   }, []);
 
@@ -177,7 +177,7 @@ export default function GlobeComponent() {
         }}
       >
         <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}>
-          <div style={{ fontSize: 64 }} className="animate-float">
+          <div style={{ fontSize: 64 }}>
             🐐
           </div>
           <h2 style={{ fontSize: 24, fontWeight: 800, margin: 0, letterSpacing: "-0.02em" }}>
@@ -253,31 +253,24 @@ export default function GlobeComponent() {
 
         {/* Global Controls */}
         <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-          {/* Autoplay Tour Mode */}
+          {/* Rotation Toggle */}
           <button
-            onClick={() => {
-              const nextState = !isTourActive;
-              setIsTourActive(nextState);
-              if (nextState && filteredGoats.length > 0) {
-                flyToGoat(filteredGoats[0]);
-              }
-            }}
+            onClick={() => setIsRotating((prev) => !prev)}
             style={{
               padding: "8px 14px",
               borderRadius: 10,
-              border: isTourActive ? "1px solid #38bdf8" : "1px solid rgba(255, 255, 255, 0.15)",
-              background: isTourActive ? "rgba(56, 189, 248, 0.25)" : "rgba(255, 255, 255, 0.06)",
-              color: isTourActive ? "#38bdf8" : "#e2e8f0",
+              border: isRotating ? "1px solid #38bdf8" : "1px solid rgba(255, 255, 255, 0.15)",
+              background: isRotating ? "rgba(56, 189, 248, 0.25)" : "rgba(255, 255, 255, 0.06)",
+              color: isRotating ? "#38bdf8" : "#e2e8f0",
               fontSize: 13,
-              fontWeight: 600,
+              fontWeight: 500,
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
               gap: 6,
-              transition: "all 0.2s ease",
             }}
           >
-            <span>{isTourActive ? "⏸️ Pause Voyage" : "🚀 Tour du Monde"}</span>
+            <span>{isRotating ? "⏸️ Arrêter Rotation" : "🔄 Rotation"}</span>
           </button>
 
           {/* Earth Theme Toggle */}
@@ -358,35 +351,26 @@ export default function GlobeComponent() {
         objectThreeObject={(d: object) => createGoat3DModel(d as GoatSpecies)}
         onObjectClick={handleObjectClick}
         onObjectHover={handleObjectHover}
-        // Glowing beacon rings under each goat
-        ringsData={filteredGoats}
-        ringLat="lat"
-        ringLng="lng"
-        ringAltitude={0.003}
-        ringColor={(d: object) =>
-          (d as GoatSpecies).id === selectedGoat?.id ? "#fbbf24" : "#38bdf8"
-        }
-        ringMaxRadius={2.8}
-        ringPropagationSpeed={2.0}
-        ringRepeatPeriod={1600}
-        // Labels above goats
+        // Labels clearly indicating each goat name and flag without animation
         labelsData={filteredGoats}
         labelLat="lat"
         labelLng="lng"
-        labelAltitude={0.038}
-        labelText={(d: object) => `${(d as GoatSpecies).country.split(" ")[1] || "🐐"} ${(d as GoatSpecies).name}`}
-        labelSize={0.9}
-        labelColor={() => "rgba(241, 245, 249, 0.9)"}
-        labelResolution={2}
-        labelIncludeDot={false}
+        labelAltitude={0.032}
+        labelText={(d: object) => `${(d as GoatSpecies).flag} ${(d as GoatSpecies).name}`}
+        labelSize={1.15}
+        labelColor={() => "#ffffff"}
+        labelResolution={3}
+        labelIncludeDot={true}
+        labelDotRadius={0.35}
+        labelDotOrientation="bottom"
+        labelsTransitionDuration={0}
         onLabelClick={handleObjectClick}
         onGlobeClick={() => {
           setSelectedGoat(null);
-          setIsRotating(true);
         }}
       />
 
-      {/* 3. Hover Tooltip */}
+      {/* 3. Hover Tooltip (clean & static) */}
       {hoveredGoat && !selectedGoat && (
         <div
           style={{
@@ -394,8 +378,7 @@ export default function GlobeComponent() {
             bottom: 120,
             left: "50%",
             transform: "translateX(-50%)",
-            background: "rgba(15, 23, 42, 0.88)",
-            backdropFilter: "blur(12px)",
+            background: "rgba(15, 23, 42, 0.94)",
             border: "1px solid rgba(56, 189, 248, 0.4)",
             borderRadius: 999,
             padding: "8px 18px",
@@ -408,10 +391,9 @@ export default function GlobeComponent() {
             boxShadow: "0 8px 30px rgba(0, 0, 0, 0.6)",
             pointerEvents: "none",
             zIndex: 40,
-            animation: "fadeIn 0.2s ease",
           }}
         >
-          <span>🐐</span>
+          <span>{hoveredGoat.flag}</span>
           <span style={{ color: "#38bdf8" }}>{hoveredGoat.name}</span>
           <span style={{ color: "#94a3b8" }}>—</span>
           <span>{hoveredGoat.country}</span>
@@ -424,7 +406,7 @@ export default function GlobeComponent() {
       {/* 4. Active Selected Goat Modal Card (Detailed Info Panel) */}
       {selectedGoat && (
         <aside
-          className="glass-panel animate-slide-right"
+          className="glass-panel"
           style={{
             position: "absolute",
             top: 86,
@@ -451,7 +433,6 @@ export default function GlobeComponent() {
             <button
               onClick={() => {
                 setSelectedGoat(null);
-                setIsRotating(true);
               }}
               style={{
                 position: "absolute",
@@ -493,7 +474,7 @@ export default function GlobeComponent() {
                 {selectedGoat.category}
               </span>
               <span style={{ fontSize: 13, color: "#94a3b8" }}>
-                {selectedGoat.country}
+                {selectedGoat.flag} {selectedGoat.country}
               </span>
             </div>
 
@@ -966,7 +947,7 @@ export default function GlobeComponent() {
                 >
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                     <span style={{ fontSize: 18 }}>🐐</span>
-                    <span style={{ fontSize: 12 }}>{goat.country.split(" ")[1] || "🌍"}</span>
+                    <span style={{ fontSize: 15 }}>{goat.flag}</span>
                   </div>
                   <strong
                     style={{
@@ -980,7 +961,7 @@ export default function GlobeComponent() {
                   >
                     {goat.name}
                   </strong>
-                  <span style={{ fontSize: 11, color: "#94a3b8" }}>{goat.region.split("(")[0]}</span>
+                  <span style={{ fontSize: 11, color: "#94a3b8" }}>{goat.country}</span>
                   <span
                     style={{
                       fontSize: 10,
